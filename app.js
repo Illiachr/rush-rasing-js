@@ -34,15 +34,34 @@ const createElem = (options = {}) => {
 
   const playGame = () => {
     console.log("Play game!");
-    if (!!settings.start) {
+    if (settings.start) {
+      if (keys.ArrowLeft) {
+        settings.x -= settings.speed;
+      }
+      if (keys.ArrowRight) {
+        settings.x += settings.speed;
+      }
+
+      if (keys.ArrowUp) {
+        settings.y -= settings.speed;
+      }
+      if (keys.ArrowDown) {
+        settings.y += settings.speed;
+      }
+
+      car.style.left = `${settings.x}px`;
+      car.style.top = `${settings.y}px`;
       requestAnimationFrame(playGame);
     }
   };
 
   const startGame = () => {
     start.classList.add("hide");
+    gameArea.classList.remove('hide');
     settings.start = true;
     gameArea.append(car);
+    settings.x = car.offsetLeft;
+    settings.y = car.offsetTop;
     requestAnimationFrame(playGame);
   };
 
@@ -60,7 +79,7 @@ const createElem = (options = {}) => {
 
   const stopRun = (e) => {
     e.preventDefault();
-    keys[e.key] = true;
+    keys[e.key] = false;
   };
 
   game.addEventListener("click", gameClickHandler);

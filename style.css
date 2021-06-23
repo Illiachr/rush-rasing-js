@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 body {
-  font-family: 'Lato',  sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
   background: #0F2027;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
@@ -14,6 +16,7 @@ body {
 .game {
   margin: 0 1.5rem;
 }
+
 .start {
   cursor: pointer;
   margin: 15rem auto;
@@ -23,7 +26,7 @@ body {
   font-size: 24px;
   letter-spacing: 0.2rem;
   background-color: rgb(255, 187, 0);
-  
+
 }
 
 .btn-grad {
@@ -46,15 +49,23 @@ body {
   text-decoration: none;
 }
 
-/* .game-area {
-  
-} */
+.game-area {
+  width: 300px;
+  height: 100vh;
+  position: relative;
+  margin: auto;
+  background: #222222;
+}
 
 .hide {
   display: none;
 }
 
 .car {
+  position: absolute;
+  /* left = .game-area width/2 (300px / 2) - .car width / 2 (50px / 2) */
+  left: 125px;
+  bottom: 10px;
   width: 50px;
   height: 100px;
   background: transparent url('./image/player.png') center / cover no-repeat;
