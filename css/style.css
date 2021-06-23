@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('./reset.css');
+
+/* variabales */
+:root {
+  --road-width: 300px;
+  --car-width: 50px;
+  --car-heigh: var(--car-width) / 2;
+}
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: 'Lato', sans-serif;
   background: #0F2027;
   /* fallback for old browsers */
@@ -50,23 +56,37 @@ body {
 }
 
 .game-area {
-  width: 300px;
+  width: var(--road-width);
   height: 100vh;
   position: relative;
   margin: auto;
   background: #222222;
+  overflow: hidden;
 }
 
 .hide {
   display: none;
 }
 
-.car {
+.car,
+.enemy {
   position: absolute;
   /* left = .game-area width/2 (300px / 2) - .car width / 2 (50px / 2) */
-  left: 125px;
+  left: calc(var(--road-width) / 2 - var(--car-width) / 2);
   bottom: 10px;
-  width: 50px;
+  width: var(--car-width);
   height: 100px;
-  background: transparent url('./image/player.png') center / cover no-repeat;
+  background: transparent url('../image/player.png') center / cover no-repeat;
+}
+
+.enemy {
+  background: transparent url('../image/enemy3.png') center / cover no-repeat;
+}
+
+.line {
+  position: absolute;
+  width: 10px;
+  height: 50px;
+  background: #ffffff;
+  left: calc(var(--road-width) / 2 - 5px);
 }
