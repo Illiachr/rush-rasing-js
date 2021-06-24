@@ -106,7 +106,6 @@ const createElem = (options = {}) => {
       ) {
         settings.start = false;
         settings.reset = true;
-        console.log(gameBar.childNodes);
         gameBar.childNodes[3].classList.remove("hide");
         gameBar.childNodes[5].classList.remove("hide");
       }
@@ -163,7 +162,6 @@ const createElem = (options = {}) => {
   const startGame = (level) => {
     settings.currLvl = level;
     settings.speed = settings.traffic = settings.levels[settings.currLvl];
-    console.log(settings);
     startCtrls.classList.add("hide");
     gameBar.childNodes[3].classList.add("hide");
     gameBar.childNodes[5].classList.add("hide");
@@ -185,7 +183,6 @@ const createElem = (options = {}) => {
 
   const gameClickHandler = (e) => {
     const { target } = e;
-    console.log(target);
     if (target.matches(".start")) {
       startGame(target.dataset.level);
     }
@@ -211,12 +208,16 @@ const createElem = (options = {}) => {
 
   const startRun = (e) => {
     e.preventDefault();
-    keys[e.key] = true;
+    if (e.key in keys) {
+      keys[e.key] = true;
+    }
   };
 
   const stopRun = (e) => {
     e.preventDefault();
-    keys[e.key] = false;
+    if (e.key in keys) {
+      keys[e.key] = false;
+    }
   };
   addStartBtns();
   game.addEventListener("click", gameClickHandler);
